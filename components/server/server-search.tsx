@@ -82,7 +82,7 @@ export const ServerSearch = ({
         </kbd>
        </button>
        <CommandDialog open={open} onOpenChange={setOpen}>
-          <CommandInput placeholder="Search all classroom channnels and members"/>
+          <CommandInput placeholder="Search all classroom channnels and Students"/>
           <CommandList>
             <CommandEmpty>
               No Result found

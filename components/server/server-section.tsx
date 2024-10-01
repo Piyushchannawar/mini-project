@@ -34,7 +34,7 @@ interface ServerSectionProps {
           {role !== MemberRole.GUEST && sectionType === "channels"&& (
               <ActionTooltip label="Create channel" side='top'>
                   <button
-                   onClick={()=> onOpen("createChannel")}
+                   onClick={()=> onOpen("createChannel", { channelType })}
                    className=" text-zinc-500 hover:text-zinc-600 
                       dark:text-zinc-400 dark:hover:text-zinc-300 transition" >
                       <Plus className=" h-4 w-4"/>
@@ -43,7 +43,7 @@ interface ServerSectionProps {
               </ActionTooltip>
           )}
           {role === MemberRole.ADMIN && sectionType === "members" && (
-               <ActionTooltip label="Manage Members" side='top'>
+               <ActionTooltip label="Manage Student" side='top'>
                <button
                 onClick={()=> onOpen("members", {server})}
                 className=" text-zinc-500 hover:text-zinc-600 
