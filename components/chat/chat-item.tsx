@@ -22,6 +22,9 @@ import {
 
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { useModal } from "@/hooks/use-modal-store";
+import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 
 interface ChatItemProps {
@@ -64,9 +67,20 @@ export const ChatItem = ({
 }: ChatItemProps) => {
 
   const [isEditing, setIsEditing] = useState(false);
-  // const { onOpen } = useModel();
-  // const params = useParams();
-  // const router = useRouter();
+   const { onOpen } = useModal();
+   const params = useParams();
+   const router = useRouter();
+
+   const onMemberClick = () => {
+    if (member.id === currentMember.id) {
+      return;
+    }
+  
+    router.push(`/servers/${params?.serverId}/conversations/${member.id}`);
+  }
+
+
+
 
   useEffect(() => {
     const handleKeyDown = (event: any) => {
@@ -126,13 +140,13 @@ export const ChatItem = ({
   return (
       <div className="relative group flex items-start hover:bg-black/5 p-4 transition w-full">
           <div className="group flex items-start w-full">
-              <div className="cursor-pointer hover:drop-shadow-md transition mr-3">
+              <div onClick={onMemberClick} className="cursor-pointer hover:drop-shadow-md transition mr-3">
                   <UserAvtar src={member.profile.imageUrl} />
               </div>
               <div className="flex flex-col w-full">
                   <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center">
-                          <p className="font-semibold">{member.profile.name}</p>
+                          <p  onClick={onMemberClick} className="font-semibold">{member.profile.name}</p>
                           <ActionTooltip label={member.role}>
                               {roleIconMap[member.role]}
                           </ActionTooltip>
@@ -228,7 +242,11 @@ export const ChatItem = ({
                 </ActionTooltip>
               )}
               <ActionTooltip label="Delete">
-                    <Trash 
+                    <Trash
+                    onClick={()=> onOpen("deleteMessage",{
+                      apiUrl: `${socketUrl}/${id}`,
+                      query: socketQuery,
+                    })} 
                     className="cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover-zinc-600 dark:hover:text-zinc-300 transition"
                     />
                 </ActionTooltip>
