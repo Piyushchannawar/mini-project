@@ -1,7 +1,6 @@
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
-import { RedirectToSignIn } from "@clerk/nextjs";
-import { auth, redirectToSignIn } from "@clerk/nextjs/server";
+import { auth} from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 interface ServerIdPageProps {

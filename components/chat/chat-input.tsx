@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod"
 import { Form, FormControl, FormField, FormItem } from "../ui/form";
 import { Input } from "../ui/input";
-import { Plus, Smile } from "lucide-react";
+import { Plus} from "lucide-react";
 import axios from "axios";
 import qs from "query-string";
 import { useModal } from "@/hooks/use-modal-store";
