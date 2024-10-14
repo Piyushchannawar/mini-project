@@ -16,3 +16,9 @@ export type NextApiResponseServerIo = NextApiResponse & {
         };
     };
 };
+
+export type Message = {
+    sender: "user" | "ai";
+    text: string;
+  };
+  

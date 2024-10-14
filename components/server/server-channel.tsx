@@ -60,7 +60,8 @@ interface ServerChannelProps {
               "text-primary dark:text-zinc-200 dark:group-hover:text-white"
           )}
         >
-          {channel.name}
+          {channel.name === "general" ? <span>Section B</span> : <span>{channel.name}</span>}
+          
         </p>
         {channel.name !== "general" && role !== MemberRole.GUEST && (
           <div className="ml-auto flex items-center gap-x-2">
